@@ -15,10 +15,10 @@ export function Serialize(dto: ClassConstructor){
 export class SerializeInterceptor implements NestInterceptor {
     constructor(private dto: any){}
     intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> {
-        console.log('will run when the request is revieved and not reached the controller yet')
+        // console.log('will run when the request is revieved and not reached the controller yet')
         return next.handle().pipe(
             map((data:any)=>{
-                console.log('will run after the controller have passed data and we have to output it now')
+                // console.log('will run after the controller have passed data and we have to output it now')
                 return plainToInstance(this.dto, data,{
                     excludeExtraneousValues: true,
                 })
