@@ -1,5 +1,5 @@
 import { UsersService } from "./users.service";
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { randomBytes, scrypt as _scrypt } from "crypto";
 import { promisify } from "util";
 
@@ -38,7 +38,7 @@ export class AuthService{
 
         //go to db and get password against the given email
         const [user] = await this.service.find(email);
-        if(!user) throw new BadRequestException('email does not exists');
+        if(!user) throw new NotFoundException('email does not exists');
 
         //extract salt from password
         const [salt, dbHash] = user.password.split('.');
