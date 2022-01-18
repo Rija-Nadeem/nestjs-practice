@@ -19,7 +19,7 @@ import { UsersService } from './users.service';
 import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { Users } from './users.entity';
-import { AuthGuard } from 'src/guards/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -56,7 +56,7 @@ export class UsersController {
   }
 
   @Get('/:id')
-  async findOne(@Param('id') id: string) {
+  async findUser(@Param('id') id: string) {
     const record = await this.service.findOne(parseInt(id));
     if (!record) {
       throw new NotFoundException('User not found');
@@ -65,7 +65,7 @@ export class UsersController {
   }
 
   @Get()
-  find(@Query('email') email: string) {
+  findAllUsers(@Query('email') email: string) {
     return this.service.find(email);
   }
 
