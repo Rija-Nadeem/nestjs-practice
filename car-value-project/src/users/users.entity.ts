@@ -1,8 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, AfterInsert, AfterRemove, AfterUpdate } from "typeorm";
+import { Reports } from 'src/reports/reports.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  AfterInsert,
+  AfterRemove,
+  AfterUpdate,
+  OneToMany,
+} from 'typeorm';
 
 @Entity()
-export class Users{
-
+export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -12,19 +20,21 @@ export class Users{
   @Column()
   password: string;
 
+  @OneToMany(()=>Reports,(report)=>report.user)
+  reports: Reports[];
+
   @AfterInsert()
-  logInsertion(){
-    console.log('Item is inserted: ', this.id)
+  logInsertion() {
+    console.log('Item is inserted: ', this.id);
   }
 
   @AfterRemove()
-  logRemoval(){
-    console.log('Item is removed: ', this.id)
+  logRemoval() {
+    console.log('Item is removed: ', this.id);
   }
 
   @AfterUpdate()
-  logUpdation(){
-    console.log('Item is updated: ', this.id)
+  logUpdation() {
+    console.log('Item is updated: ', this.id);
   }
-
 }
