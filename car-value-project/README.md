@@ -73,12 +73,15 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 Nest is [MIT licensed](LICENSE).
 
 
--to create a module 
+## to create a module 
 nest.cmd g module reports (nest.cmd g module moduleName)
 
--to create a controller
+## to create a controller
 nest.cmd g controller reports (nest.cmd g controller controllerName)
 
--to create a service
+## to create a service
 nest.cmd g service reports (nest.cmd g service serviceName)
+
+## created migration
+npm run typeorm migration:create -- -n InitialSchema -o
 
